@@ -13,7 +13,7 @@
 |first_name_full_width     |string  |null:false             |
 |last_name_full_width_kana |string  |null:false             |
 |first_name_full_width_kana|string  |null:false             |
-|birthday                  |string  |null:false             |
+|birthday                  |date    |null:false             |
 
 ### Association
 
@@ -26,13 +26,15 @@
 |Column                    |Type      |Options                        |
 |--------------------------|----------|-------------------------------|
 |name                      |string    |null:false                     |
-|image                     |Active Storage                            |
 |explanation               |text      |null:false                     |
 |category_id               |integer   |null:false                     |
 |status_id                 |integer   |null:false                     |
 |load_id                   |integer   |null:false                     |
 |prefecture_id             |integer   |null:false                     |
 |date_id                   |integer   |null:false                     |
+|price                     |integer   |null:false                     |
+
+## |image                     |Active Storage                            |
 
 ### Association
 
@@ -57,12 +59,12 @@
 |Column                    |Type      |Options                        |
 |--------------------------|----------|-------------------------------|
 |purchase                  |references|null:false, foreign_key: true  |
-|post_number               |integer   |null:false                     |
-|prefecture_id             |references|null:false, foreign_key: true  |
+|post_number_id            |integer   |null:false                     |
+|prefecture_id             |integer   |null:false                     |
 |municipality              |string    |null:false                     |
-|address_number            |integer   |null:false                     |
+|address_number_id         |integer   |null:false                     |
 |build                     |string    |                               |
-|telephone                 |integer   |null:false                     |
+|telephone_id              |integer   |null:false                     |
 
 ### Association
 
