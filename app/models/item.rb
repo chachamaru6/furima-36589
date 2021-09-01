@@ -8,11 +8,11 @@ class Item < ApplicationRecord
   belongs_to :status
   belongs_to :load
   belongs_to :prefecture
-  belongs_to :date
+  belongs_to :schedule
 
 
   validates :name, :expalanation, :price, presence: true
-  validates :category_id, :status_id, :load_id, :prefecture_id, :date_id, numericality: { other_than: 1 , message: "can't be blank"}
+  validates :category_id, :status_id, :load_id, :prefecture_id, :schedule_id, numericality: { other_than: 1 , message: "can't be blank"}
 
 
 end
