@@ -31,8 +31,10 @@
 |status_id                 |integer   |null:false                     |
 |load_id                   |integer   |null:false                     |
 |prefecture_id             |integer   |null:false                     |
-|date_id                   |integer   |null:false                     |
+|schedule_id               |integer   |null:false                     |
 |price                     |integer   |null:false                     |
+|user                      |references|null:false, foreign_key: true  |
+
 
 ## |image                     |Active Storage                            |
 
