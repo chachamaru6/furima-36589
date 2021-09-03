@@ -56,6 +56,8 @@ class ItemsController < ApplicationController
     if @item.user_id != current_user.id
       redirect_to items_path
     end
+  end
+  
 
 
 end
