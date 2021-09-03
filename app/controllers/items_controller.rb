@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
 
   before_action :authenticate_user!, only: [:new, :create, :edit]
   before_action :set_furima, only: [:show, :edit, :update]
+  before_action :prevent_url, only: [:edit, :update]
   
   
 
@@ -26,9 +27,6 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if @item.user_id != current_user.id
-      redirect_to items_path
-    end
   end
 
   def update
@@ -37,9 +35,6 @@ class ItemsController < ApplicationController
      else
       render :edit
      end
-     if @item.user_id != current_user.id
-      redirect_to items_path
-    end
   end
 
 
@@ -56,6 +51,11 @@ class ItemsController < ApplicationController
   def set_furima
     @item = Item.find(params[:id])
   end
+
+  def prevent_url
+    if @item.user_id != current_user.id
+      redirect_to items_path
+    end
 
 
 end
