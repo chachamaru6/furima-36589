@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
   before_action :authenticate_user!, only: [:new, :create, :edit, :destroy]
-  before_action :set_furima, only: [:show, :edit, :update]
+  before_action :set_furima, only: [:show, :edit, :update, :destroy]
   before_action :prevent_url, only: [:edit, :update, :destroy]
   
   
@@ -38,8 +38,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    item = Item.find(params[:id])
-    item.destroy
+    @item.destroy
     redirect_to root_path
   end
 
