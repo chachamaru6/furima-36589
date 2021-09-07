@@ -1,8 +1,12 @@
 class OrdersController < ApplicationController
+  before_action :authenticate_user!,only: :index
 
   def index
     @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new
+    if @item.user_id == current_user.id || @item.order.present?
+      redirect_to items_path
+    end
   end
 
   def create
@@ -23,6 +27,7 @@ class OrdersController < ApplicationController
   def order_params
     params.require(:order_address).permit(:post_number, :prefecture_id, :city, :address_num, :building_name, :telephone,).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
+
 
   #def pay_item
    # Payjp.api_key = "sk_test_4d7982b796b399f42a463ee7"
