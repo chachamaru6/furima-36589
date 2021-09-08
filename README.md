@@ -43,7 +43,7 @@
 - belongs_to: user
 - has_one: purchase
 
-## purchases table
+## orders table
 
 |Column                    |Type      |Options                        |
 |--------------------------|----------|-------------------------------|
@@ -60,14 +60,14 @@
 ## address table
 |Column                    |Type      |Options                        |
 |--------------------------|----------|-------------------------------|
-|purchase                  |references|null:false, foreign_key: true  |
+|order                     |references|null:false, foreign_key: true  |
 |post_number               |string    |null:false                     |
 |prefecture_id             |integer   |null:false                     |
-|municipality              |string    |null:false                     |
-|address_number            |string    |null:false                     |
-|build                     |string    |                               |
+|city                      |string    |null:false                     |
+|address_num               |string    |null:false                     |
+|building_name             |string    |                               |
 |telephone                 |string    |null:false                     |
 
 ### Association
 
-- belongs_to: purchase
+- belongs_to: order

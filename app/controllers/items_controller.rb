@@ -1,13 +1,10 @@
 class ItemsController < ApplicationController
-
   before_action :authenticate_user!, only: [:new, :create, :edit, :destroy]
   before_action :set_furima, only: [:show, :edit, :update, :destroy]
   before_action :prevent_url, only: [:edit, :update, :destroy]
-  
-  
 
   def index
-    @items = Item.order("created_at DESC")
+    @items = Item.order('created_at DESC')
   end
 
   def new
@@ -27,14 +24,15 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    redirect_to items_path if @item.user_id == current_user.id && @item.order.present?
   end
 
   def update
-     if @item.update(item_params)
+    if @item.update(item_params)
       redirect_to item_path
-     else
+    else
       render :edit
-     end
+    end
   end
 
   def destroy
@@ -42,11 +40,11 @@ class ItemsController < ApplicationController
     redirect_to root_path
   end
 
-
   private
 
   def item_params
-    params.require(:item).permit(:name, :explanation, :category_id, :status_id, :load_id, :prefecture_id, :schedule_id, :price, :image).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :explanation, :category_id, :status_id, :load_id, :prefecture_id, :schedule_id, :price,
+                                 :image).merge(user_id: current_user.id)
   end
 
   def set_furima
@@ -54,11 +52,6 @@ class ItemsController < ApplicationController
   end
 
   def prevent_url
-    if @item.user_id != current_user.id
-      redirect_to items_path
-    end
+    redirect_to items_path if @item.user_id != current_user.id
   end
-  
-
-
 end
