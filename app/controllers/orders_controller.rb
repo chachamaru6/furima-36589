@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
     @order_address = OrderAddress.new(order_params)
     if @order_address.valid?
-       #pay_item
+       pay_item
       @order_address.save
       redirect_to root_path 
     else
@@ -29,14 +29,14 @@ class OrdersController < ApplicationController
   end
 
 
-  #def pay_item
-   # Payjp.api_key = "sk_test_4d7982b796b399f42a463ee7"
-    #   Payjp::Charge.create(
-     #    amount: order_address_params[:price],  # 商品の値段
-      #   card: order_address_params[:token],    # カードトークン
-        # currency: 'jpy'                 # 通貨の種類（日本円）
-       #)
-  #end
+  def pay_item
+   Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+     Payjp::Charge.create(
+      amount: order_address_params[:price],  # 商品の値段
+      card: order_address_params[:token],    # カードトークン
+      currency: 'jpy'                 # 通貨の種類（日本円）
+     )
+  end
 
   
 end
