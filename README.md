@@ -41,7 +41,8 @@
 ### Association
 
 - belongs_to: user
-- has_one: purchase
+- has_one: order
+- has_many_attached :image
 
 ## orders table
 
@@ -57,7 +58,7 @@
 - has_one: address
 
 
-## address table
+## addresses table
 |Column                    |Type      |Options                        |
 |--------------------------|----------|-------------------------------|
 |order                     |references|null:false, foreign_key: true  |

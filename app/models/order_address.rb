@@ -7,13 +7,13 @@ class OrderAddress
     validates :user_id
     validates :token
 
-    validates :post_number, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
-    validates :city, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: 'is invalid. Input full-width characters.' }
+    validates :post_number, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: ' はハイフン(-)をつけて下さい' }
+    validates :city, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: ' 全角文字で記入して下さい' }
     validates :address_num
-    validates :telephone, format: { with: /\A[0-9]{11}\z/, message: 'is invalid.' }
+    validates :telephone, format: { with: /\A[0-9]{11}\z/, message: ' を入力して下さい' }
   end
 
-  validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :prefecture_id, numericality: { other_than: 1, message: " を選択して下さい" }
 
   def save
     order = Order.create(user_id: user_id, item_id: item_id)
